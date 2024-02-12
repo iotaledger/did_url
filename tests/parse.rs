@@ -25,6 +25,7 @@ fn test_parse_valid_method_id() {
   assert!(DID::parse("did:method:identifier").is_ok());
   assert!(DID::parse("did:method:IDENTIFIER").is_ok());
   assert!(DID::parse("did:method:did:__:--:1231093213").is_ok());
+  assert!(DID::parse("did:web:user%40localhost%3A12345").is_ok());
 }
 
 #[test]
@@ -35,6 +36,7 @@ fn test_parse_invalid_method_id() {
   assert!(DID::parse("did:method: - - -").is_err());
   assert!(DID::parse("did:method:*****").is_err());
   assert!(DID::parse("did:method:identifier-|$|").is_err());
+  assert!(DID::parse("did:web:user%localhost%12345").is_err());
 }
 
 #[test]

@@ -258,6 +258,10 @@ impl Core {
     loop {
       match input.peek() {
         Some('/') | Some('?') | Some('#') | None => break,
+        Some('%') => self
+          .parse_pct_enc_char(input)
+          .map(|_| ())
+          .ok_or(Error::InvalidMethodId)?,
         Some(ch) if char_method_id(ch) => {}
         _ => return Err(Error::InvalidMethodId),
       }
@@ -266,6 +270,17 @@ impl Core {
     }
 
     Ok(())
+  }
+
+  fn parse_pct_enc_char(&mut self, input: &mut Input) -> Option<char> {
+    if input.next() != Some('%') {
+      return None;
+    }
+
+    let hex_value = input.take(2)?;
+    u8::from_str_radix(hex_value, 16)
+      .ok()
+      .map(|ascii| ascii as char)
   }
 
   fn parse_path(&mut self, input: &mut Input) -> Result<()> {
