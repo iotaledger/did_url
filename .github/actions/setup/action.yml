@@ -1,0 +1,49 @@
+name: 'rust-setup'
+description: 'Prepares a rust environment and relevant caches.'
+inputs:
+  target:
+    description: 'Additionally install specified target for this toolchain, ex. x86_64-apple-darwin'
+    required: false
+  toolchain:
+    description: 'Toolchain to install. Default: stable.'
+    required: false
+    default: stable
+  components:
+    description: 'Comma-separated string of additional components to install e.g. `clippy`, `rustfmt`'
+    required: false
+  os:
+    description: 'OS of the runner, used for cache key construction.'
+    required: true
+runs:
+  using: "composite"
+  steps:
+
+    - name: Setup rust toolchain
+      shell: bash
+      run: |
+
+        if ! rustup self update; then
+            echo "rustup self update failed"
+        fi
+        
+        TARGET=${{ inputs.target }}
+        if [[ $TARGET != '' ]]; then
+          rustup target add $TARGET
+        fi
+
+        rustup update
+        
+        TOOLCHAIN=${{ inputs.toolchain }}
+        if [[ $TOOLCHAIN != 'stable' ]]; then
+           rustup toolchain install $TOOLCHAIN
+        fi
+
+        COMPONENTS=${{ inputs.components }}
+        if [[ $COMPONENTS != '' ]]; then
+          for i in ${COMPONENTS//,/ }
+          do
+            rustup component add $i $(if [ $TOOLCHAIN != '' ]; then echo --toolchain $TOOLCHAIN; fi)
+          done
+        fi
+        
+        rustup show
