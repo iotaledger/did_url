@@ -12,7 +12,7 @@ cargo-fuzz = true
 [dependencies]
 libfuzzer-sys = "0.3"
 
-[dependencies.did_url]
+[dependencies.did_url_parser]
 path = ".."
 
 # Prevent this from interfering with workspaces

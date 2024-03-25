@@ -1,5 +1,5 @@
-use did_url::Result;
-use did_url::DID;
+use did_url_parser::Result;
+use did_url_parser::DID;
 
 fn main() -> Result<()> {
   let did = DID::parse("did:example:alice")?;

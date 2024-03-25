@@ -1,6 +1,6 @@
-use did_url::did;
-use did_url::Result;
-use did_url::DID;
+use did_url_parser::did;
+use did_url_parser::Result;
+use did_url_parser::DID;
 
 #[rustfmt::skip]
 fn main() -> Result<()> {

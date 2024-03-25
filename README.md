@@ -7,7 +7,7 @@ A fork of https://github.com/l1h3r/did_url
 ---
 
 ```rust
-use did_url::DID;
+use did_url_parser::DID;
 
 let did = DID::parse("did:example:alice")?;
 

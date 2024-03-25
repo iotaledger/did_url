@@ -1,4 +1,4 @@
-use did_url::DID;
+use did_url_parser::DID;
 use proptest::prelude::*;
 use proptest::string::string_regex;
 

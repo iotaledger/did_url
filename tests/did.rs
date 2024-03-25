@@ -1,4 +1,4 @@
-use did_url::*;
+use did_url_parser::*;
 
 #[test]
 fn test_method() -> Result<()> {
