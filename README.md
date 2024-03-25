@@ -1,6 +1,8 @@
-# did
+# DID URL Parser
 
 **A parser for Decentralized Identifiers (DIDs)**
+
+A fork of https://github.com/l1h3r/did_url
 
 ---
 

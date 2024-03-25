@@ -24,7 +24,7 @@ jobs:
         with:
           ref: ${{ github.event.inputs.branch }}
       - name: Publish to crates.io
-        uses: './.github/actions/publish/publish-rust'
+        uses: './.github/actions/publish'
         with:
           version: ${{ github.event.inputs.version }}
           crates-token: ${{ secrets.CRATES_IO_TOKEN }}
