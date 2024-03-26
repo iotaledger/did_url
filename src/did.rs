@@ -3,7 +3,6 @@ use alloc::string::String;
 #[cfg(feature = "alloc")]
 use alloc::string::ToString as _;
 use core::cmp::Ordering;
-use core::convert::TryFrom;
 use core::fmt::Debug;
 use core::fmt::Display;
 use core::fmt::Formatter;
@@ -279,6 +278,12 @@ mod resolution {
   #[derive(Debug)]
   #[repr(transparent)]
   pub struct Path<'a>(Cow<'a, str>);
+
+  impl<'a> Default for Path<'a> {
+    fn default() -> Self {
+      Self::new()
+    }
+  }
 
   impl<'a> Path<'a> {
     pub const fn new() -> Self {
