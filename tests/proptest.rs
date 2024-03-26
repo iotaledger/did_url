@@ -15,6 +15,6 @@ proptest! {
   // TODO: Test fragment
   #[test]
   fn parse_did_syntax(input in did_syntax()) {
-    DID::parse(&input).unwrap();
+    DID::parse(input).unwrap();
   }
 }
