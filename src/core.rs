@@ -89,10 +89,7 @@ impl Core {
   }
 
   pub(crate) fn set_path(&mut self, buffer: &mut String, value: &str) {
-    let end: u32 = self
-      .query
-      .or(self.fragment)
-      .unwrap_or_else(|| buffer.len() as u32);
+    let end: u32 = self.query.or(self.fragment).unwrap_or(buffer.len() as u32);
 
     let int: Int = Int::new(end, self.path + value.len() as u32);
 
@@ -111,7 +108,7 @@ impl Core {
         self.query = Some(fragment);
         self.fragment = Some(fragment + value.len() as u32 + 1);
 
-        buffer.insert_str(fragment as usize, "?");
+        buffer.insert(fragment as usize, '?');
         buffer.insert_str(fragment as usize + 1, value);
       }
       (Some(query), Some(fragment), Some(value)) => {

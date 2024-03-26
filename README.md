@@ -2,7 +2,7 @@
 
 **A parser for Decentralized Identifiers (DIDs)**
 
-A fork of https://github.com/l1h3r/did_url
+A fork of [l1h3r/did_url](https://github.com/l1h3r/did_url).
 
 ---
 

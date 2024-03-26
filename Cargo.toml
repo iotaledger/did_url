@@ -2,7 +2,7 @@
 name = "did_url_parser"
 version = "0.2.0"
 authors = ["IOTA Stiftung"]
-edition = "2018"
+edition = "2021"
 license = "MIT OR Apache-2.0"
 description = "A no_std parser for Decentralized Identifiers (DIDs)"
 repository = "https://github.com/iotaledger/did_url"

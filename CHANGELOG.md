@@ -6,3 +6,5 @@
 
 ### Patch
 
+- Forked [l1h3r/did_url](https://github.com/l1h3r/did_url) and fixed a bug that made
+valid DID URLs containing `%`-encoded characters unparsable.

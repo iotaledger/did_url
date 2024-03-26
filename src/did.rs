@@ -69,7 +69,7 @@ impl DID {
   /// This is fast since the serialized value is stored in the [`DID`].
   #[inline]
   pub fn as_str(&self) -> &str {
-    &*self.data
+    &self.data
   }
 
   /// Consumes the [`DID`] and returns the serialization.
@@ -194,7 +194,7 @@ impl Eq for DID {}
 
 impl PartialOrd for DID {
   fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-    self.as_str().partial_cmp(other.as_str())
+    Some(self.cmp(other))
   }
 }
 
