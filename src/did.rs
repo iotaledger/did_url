@@ -279,13 +279,13 @@ mod resolution {
   #[repr(transparent)]
   pub struct Path<'a>(Cow<'a, str>);
 
-  impl<'a> Default for Path<'a> {
+  impl Default for Path<'_> {
     fn default() -> Self {
       Self::new()
     }
   }
 
-  impl<'a> Path<'a> {
+  impl Path<'_> {
     pub const fn new() -> Self {
       Self(Cow::Borrowed(""))
     }

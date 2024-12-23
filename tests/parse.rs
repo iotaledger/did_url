@@ -116,3 +116,14 @@ fn test_parse_simple_fragment() {
   assert_eq!(did.query(), None);
   assert_eq!(did.fragment(), Some("public-key-1"));
 }
+
+#[test]
+#[rustfmt::skip]
+fn test_parse_percent_encoded_components() {
+  let did: DID = DID::parse("did:example:123456/p%3Ath?qu%3Ary#fr%3Agment").unwrap();
+  assert_eq!(did.method(), "example");
+  assert_eq!(did.method_id(), "123456");
+  assert_eq!(did.path(), "/p%3Ath");
+  assert_eq!(did.query(), Some("qu%3Ary"));
+  assert_eq!(did.fragment(), Some("fr%3Agment"));
+}
