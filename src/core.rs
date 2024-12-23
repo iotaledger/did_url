@@ -290,6 +290,10 @@ impl Core {
     loop {
       match input.peek() {
         Some('?') | Some('#') | None => break,
+        Some('%') => self
+          .parse_pct_enc_char(input)
+          .map(|_| ())
+          .ok_or(Error::InvalidPath)?,
         Some(ch) if char_path(ch) => {}
         _ => return Err(Error::InvalidPath),
       }
@@ -316,6 +320,10 @@ impl Core {
     loop {
       match input.peek() {
         Some('#') | None => break,
+        Some('%') => self
+          .parse_pct_enc_char(input)
+          .map(|_| ())
+          .ok_or(Error::InvalidPath)?,
         Some(ch) if char_query(ch) => {}
         _ => return Err(Error::InvalidQuery),
       }
@@ -342,6 +350,10 @@ impl Core {
     loop {
       match input.peek() {
         None => break,
+        Some('%') => self
+          .parse_pct_enc_char(input)
+          .map(|_| ())
+          .ok_or(Error::InvalidPath)?,
         Some(ch) if char_fragment(ch) => {}
         _ => return Err(Error::InvalidFragment),
       }
